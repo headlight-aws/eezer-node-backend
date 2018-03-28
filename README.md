@@ -15,5 +15,7 @@ How to run?
 npm install
 
 Dev: npm run dev
+
 Prod: npm run start (NODE_ENV must be set to production)
+
 Stage: npm run start (NODE_ENV must be set to staging)
