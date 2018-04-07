@@ -3,25 +3,12 @@
 
 This is the main configuration file for the eezer backend API.
 
-To use different profiles set the NODE_ENV variable when running
-the application to the desired value (ex. development, test, prod).
+All of the below config parameters must be set, for local development
+use the .env file to set the desired config params (do not upload that
+file to github).
 
-Example: NODE_ENV=development npm run start
-Example npm run dev (preconfigured with the development env)
-
-Make sure to have a config file for the specified environment, for
-example if using the 'development' environment the config file should
-be named config.development.js and reside in the config directory.
-
-There is an example config file named 'config.test.js' that shows
-the neccessary config attributes that must be set for the application
-to run.
-
-Use the getConfig method to retrieve the config objects
-for a specific environment.
-
-The NODE_ENV variable must be set in package.json file or in the command
-line when running the application.
+In staging/production set the environment variables before running the
+application, the .env file is not read in production environment.
 
  */
 
