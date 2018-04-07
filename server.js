@@ -27,6 +27,11 @@ import {
   URL_WHITELIST
 } from './src/config/constants';
 
+// Don't load the .env file in production.
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
+
 console.log(`Starting Eezer API server.`);
 const app = express();
 const config = getConfig();
