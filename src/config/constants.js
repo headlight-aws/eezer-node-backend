@@ -21,11 +21,13 @@ export const API_PATH_REMOVE = 'remove';
 export const API_PATH_ADD_USER = 'adduser';
 export const API_PATH_DELETE_USERS = 'rmuser';
 export const API_PATH_GET_USERS = 'getusers';
+export const API_PATH_NUMBER_DRIVERS = 'getnumberdrivers';
 
 // Vehicle routes
 export const API_PATH_ADD_VEHICLE = 'addvehicle';
 export const API_PATH_DELETE_VEHICLE = 'rmvehicle';
 export const API_PATH_GET_VEHICLES = 'getvehicles';
+export const API_PATH_NUMBER_VEHICLES = 'getnumbervehicles';
 
 // Admin routes
 export const API_PATH_EXPORT = 'export';

@@ -75,4 +75,18 @@ module.exports = {
     });
   },
 
+  // GET /getnumbervehicles | Get the number of all existing vehicles in system.
+  getNumberVehicles: (req, res) => {
+
+    
+    Vehicle.find({}, '-_id -__v', (err, doc) => {
+      if (err) {
+        res.status(500).json(toError(err));
+        return;
+      }
+      
+      var lengthDoc = doc.length;
+      res.json(toResponse(lengthDoc));
+    });
+  }
 };
