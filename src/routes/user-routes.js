@@ -81,6 +81,19 @@ module.exports = {
     });
   },
 
+  // GET /getdrivers | Get all existing drivers in system.
+  getDrivers: (req, res) => {
+
+    User.find({"role" : "DRIVER"}, '-_id -__v -password', (err, doc) => {
+      if (err) {
+        res.status(500).json(toError(err));
+        return;
+      }
+      console.log(doc);
+      res.json(toResponse(doc));
+    });
+  },
+
   // GET /getnumberdrivers | Get the number of all drivers existing in system.
   getNumberDrivers: (req, res) => {
 

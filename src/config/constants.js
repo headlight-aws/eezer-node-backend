@@ -22,6 +22,7 @@ export const API_PATH_TOTAL_DISTANCE = 'totaldistance';
 export const API_PATH_ADD_USER = 'adduser';
 export const API_PATH_DELETE_USERS = 'rmuser';
 export const API_PATH_GET_USERS = 'getusers';
+export const API_PATH_GET_DRIVERS = 'drivers';
 export const API_PATH_NUMBER_DRIVERS = 'getnumberdrivers';
 
 // Vehicle routes

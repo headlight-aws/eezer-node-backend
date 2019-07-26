@@ -20,7 +20,7 @@ import {
   API_PATH_EXPORT,
   API_PATH_LOGIN,
   // user
-  API_PATH_ADD_USER, API_PATH_DELETE_USERS, API_PATH_GET_USERS, API_PATH_NUMBER_DRIVERS,
+  API_PATH_ADD_USER, API_PATH_DELETE_USERS, API_PATH_GET_USERS, API_PATH_GET_DRIVERS, API_PATH_NUMBER_DRIVERS,
   // vehicles
   API_PATH_ADD_VEHICLE, API_PATH_DELETE_VEHICLE, API_PATH_GET_VEHICLES, API_PATH_NUMBER_VEHICLES,
   // whitelisted URLs
@@ -67,6 +67,7 @@ router.use(middlewares.default);
 router.post(`/${API_PATH_ADD_USER}`, middlewares.adminCheck);
 router.delete(`/${API_PATH_DELETE_USERS}/:username`, middlewares.adminCheck);
 router.get(`/${API_PATH_GET_USERS}`, middlewares.adminCheck);
+router.get(`/${API_PATH_GET_DRIVERS}`, middlewares.adminCheck);
 router.get(`/${API_PATH_NUMBER_DRIVERS}`, middlewares.adminCheck);
 
 // vehicles
@@ -98,6 +99,7 @@ router.route(`/${API_PATH_TOTAL_DISTANCE}`).get(transportRoutes.getTotalDistance
 router.route(`/${API_PATH_ADD_USER}`).post(userRoutes.addUser);
 router.route(`/${API_PATH_DELETE_USERS}/:username`).delete(userRoutes.deleteUser);
 router.route(`/${API_PATH_GET_USERS}`).get(userRoutes.getUsers);
+router.route(`/${API_PATH_GET_DRIVERS}`).get(userRoutes.getDrivers);
 router.route(`/${API_PATH_NUMBER_DRIVERS}`).get(userRoutes.getNumberDrivers);
 
 /* Set up vehicle routes */
