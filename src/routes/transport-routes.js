@@ -1,6 +1,8 @@
 import Transport from '../db/models/transport';
 import { toError, toResponse, toValidationError } from '../utils/response-utils';
 import { EEZER_DOCUMENT_NOT_FOUND } from '../utils/error-codes';
+import moment from 'moment';
+import momentFormat from 'moment-duration-format';
 
 /* Set up all the routes related to transports */
 module.exports = {
@@ -8,6 +10,9 @@ module.exports = {
   /* POST: /store | Store a transport into the database */
   storeTransport: (req, res) => {
     const transport = new Transport();
+
+    const duration = moment.duration(req.body.duration, 'seconds');
+    const formatted = duration.format("hh:mm:ss");
 
     transport.transportId     = req.body.transportId;
     transport.driverId        = req.body.driverId;
@@ -18,7 +23,7 @@ module.exports = {
     transport.reason          = req.body.reason;
     transport.coordinates     = req.body.coordinates;
     transport.distance        = req.body.distance;
-    transport.duration        = req.body.duration;
+    transport.duration        = formatted;
     transport.started         = req.body.startedTime;
     transport.ended           = req.body.endedTime;
 
@@ -106,6 +111,32 @@ module.exports = {
         totalDistance += jsonDistance[i].distance;
       }
       res.json(toResponse(Math.round(totalDistance)));
+    });
+  },
+
+  /* GET: /gettotalduration | Fetch total duration for all transports - in hours*/
+  getTotalDuration: (req, res) => {
+    Transport.find({}, 'duration', (err, doc) => {
+      if (err) {
+        res.status(500).json(toError(err));
+        return;
+      }
+
+      var stringDistance = JSON.stringify(doc);
+      var jsonDistance = JSON.parse(stringDistance);
+      var totalDuration = 0;
+      var numberTransports = jsonDistance.length;
+      for (var i=0; i<numberTransports; i++){
+        totalDuration += moment(jsonDistance[i].duration);
+      }
+
+      var totalDurationHours = totalDuration/(60*60)
+      console.log(totalDuration);
+      console.log(totalDurationHours);
+      
+      const duration = moment.duration(totalDuration, 'seconds');
+      const formatted = duration.format("hh");
+      res.json(formatted);
     });
   }
   

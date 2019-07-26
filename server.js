@@ -15,7 +15,7 @@ import middlewares from './src/middlewares/middlewares';
 
 import {
   // transport
-  API_PATH_STORE, API_PATH_ALL, API_PATH_COORDS, API_PATH_REMOVE, API_PATH_TOTAL_DISTANCE,
+  API_PATH_STORE, API_PATH_ALL, API_PATH_COORDS, API_PATH_REMOVE, API_PATH_TOTAL_DISTANCE, API_PATH_TOTAL_DURATION,
   // admin
   API_PATH_EXPORT,
   API_PATH_LOGIN,
@@ -68,13 +68,13 @@ router.post(`/${API_PATH_ADD_USER}`, middlewares.adminCheck);
 router.delete(`/${API_PATH_DELETE_USERS}/:username`, middlewares.adminCheck);
 router.get(`/${API_PATH_GET_USERS}`, middlewares.adminCheck);
 router.get(`/${API_PATH_GET_DRIVERS}`, middlewares.adminCheck);
-router.get(`/${API_PATH_NUMBER_DRIVERS}`, middlewares.adminCheck);
+//router.get(`/${API_PATH_NUMBER_DRIVERS}`, middlewares.adminCheck);
 
 // vehicles
 router.post(`/${API_PATH_ADD_VEHICLE}`, middlewares.adminCheck);
 router.delete(`/${API_PATH_DELETE_VEHICLE}`, middlewares.adminCheck);
 router.get(`/${API_PATH_GET_VEHICLES}`, middlewares.adminCheck);
-router.get(`/${API_PATH_NUMBER_VEHICLES}`, middlewares.adminCheck);
+//router.get(`/${API_PATH_NUMBER_VEHICLES}`, middlewares.adminCheck);
 
 // transports
 router.delete(`/${API_PATH_REMOVE}/:id`, middlewares.adminCheck);
@@ -94,6 +94,7 @@ router.route(`/${API_PATH_ALL}`).get(transportRoutes.getAll);
 router.route(`/${API_PATH_COORDS}/:id`).get(transportRoutes.getCoordinates);
 router.route(`/${API_PATH_REMOVE}/:id`).delete(transportRoutes.removeTransport);
 router.route(`/${API_PATH_TOTAL_DISTANCE}`).get(transportRoutes.getTotalDistance);
+router.route(`/${API_PATH_TOTAL_DURATION}`).get(transportRoutes.getTotalDuration);
 
 /* Set up user routes */
 router.route(`/${API_PATH_ADD_USER}`).post(userRoutes.addUser);
