@@ -16,6 +16,7 @@ export const API_PATH_STORE = 'store';
 export const API_PATH_ALL = 'all';
 export const API_PATH_COORDS = 'coords';
 export const API_PATH_REMOVE = 'remove';
+export const API_PATH_TOTAL_DISTANCE = 'totaldistance';
 
 // User routes
 export const API_PATH_ADD_USER = 'adduser';

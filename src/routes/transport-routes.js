@@ -88,5 +88,25 @@ module.exports = {
 
       res.json(toResponse(newCoords));
     });
+  },
+
+  /* GET: /gettotaldistance | Fetch total distance for all transports*/
+  getTotalDistance: (req, res) => {
+    Transport.find({}, 'distance', (err, doc) => {
+      if (err) {
+        res.status(500).json(toError(err));
+        return;
+      }
+
+      var stringDistance = JSON.stringify(doc);
+      var jsonDistance = JSON.parse(stringDistance);
+      var totalDistance = 0;
+      var numberTransports = jsonDistance.length;
+      for (var i=0; i<numberTransports; i++){
+        totalDistance += jsonDistance[i].distance;
+      }
+      res.json(toResponse(Math.round(totalDistance)));
+    });
   }
+  
 };
