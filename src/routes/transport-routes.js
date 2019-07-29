@@ -4,15 +4,18 @@ import { EEZER_DOCUMENT_NOT_FOUND } from '../utils/error-codes';
 import moment from 'moment';
 import momentFormat from 'moment-duration-format';
 
+const timeconverter = (sec)=>{
+  const duration = moment.duration(sec, 'seconds');
+  const formatted = duration.format("hh:mm:ss")
+  return formatted;
+};
+
 /* Set up all the routes related to transports */
 module.exports = {
 
   /* POST: /store | Store a transport into the database */
   storeTransport: (req, res) => {
     const transport = new Transport();
-
-    const duration = moment.duration(req.body.duration, 'seconds');
-    const formatted = duration.format("hh:mm:ss");
 
     transport.transportId     = req.body.transportId;
     transport.driverId        = req.body.driverId;
@@ -23,7 +26,7 @@ module.exports = {
     transport.reason          = req.body.reason;
     transport.coordinates     = req.body.coordinates;
     transport.distance        = req.body.distance;
-    transport.duration        = formatted;
+    transport.duration        = timeconverter(req.body.duration);
     transport.started         = req.body.startedTime;
     transport.ended           = req.body.endedTime;
 

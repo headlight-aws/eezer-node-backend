@@ -76,7 +76,7 @@ const TransportSchema = new Schema({
     min: 0
   },
   duration: {
-    type: Number,
+    type: String,
     required: [ true, 'duration required' ],
     min: 0
   },
