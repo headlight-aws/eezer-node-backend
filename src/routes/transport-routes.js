@@ -98,7 +98,7 @@ module.exports = {
     });
   },
 
-  /* GET: /gettotaldistance | Fetch total distance for all transports*/
+  /* GET: /totaldistance | Fetch total distance for all transports*/
   getTotalDistance: (req, res) => {
     Transport.find({}, 'distance', (err, doc) => {
       if (err) {
@@ -117,7 +117,7 @@ module.exports = {
     });
   },
 
-  /* GET: /gettotalduration | Fetch total duration for all transports - in hours*/
+  /* GET: /totalduration | Fetch total duration for all transports - in hours*/
   getTotalDuration: (req, res) => {
     Transport.find({}, 'duration', (err, doc) => {
       if (err) {
@@ -140,6 +140,32 @@ module.exports = {
       const duration = moment.duration(totalDuration, 'seconds');
       const formatted = duration.format("hh");
       res.json(formatted);
+    });
+  },
+
+  /* GET: /latestroute | Get latest route where coordinates excist */
+  getLatestRoute: (req, res) => {
+    Transport.find({}, '-_id -__v', (err, doc) => {
+      if (err) {
+        res.status(500).json(toError(err));
+        return;
+      }
+
+      let stringTransport = JSON.stringify(doc);
+      let jsonTransport = JSON.parse(stringTransport);
+      
+      jsonTransport.sort(function(a,b){
+        return b.started.localeCompare(a.started);
+      });
+
+      for (var i = 0; i< jsonTransport.length; i++){
+        
+        if (jsonTransport[i].coordinates != ""){
+          break;
+        }
+      }
+
+      res.json(toResponse(jsonTransport[i]));
     });
   }
   

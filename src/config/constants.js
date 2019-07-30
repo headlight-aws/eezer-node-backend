@@ -18,6 +18,7 @@ export const API_PATH_COORDS = 'coords';
 export const API_PATH_REMOVE = 'remove';
 export const API_PATH_TOTAL_DISTANCE = 'totaldistance';
 export const API_PATH_TOTAL_DURATION = 'totalduration';
+export const API_PATH_LATEST_ROUTE = 'latestroute';
 
 // User routes
 export const API_PATH_ADD_USER = 'adduser';
