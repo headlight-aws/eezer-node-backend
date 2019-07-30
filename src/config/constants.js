@@ -37,15 +37,13 @@ export const API_PATH_NUMBER_VEHICLES = 'getnumbervehicles';
 export const API_PATH_EXPORT = 'export';
 export const API_PATH_LOGIN = 'login';
 
-// No Authentication
-export const API_PATH_NOAUTHENTICATION = '/noauth';
 
 /* Whitelisted URLs (that require not authentication)
  * Note: If you change the API root endpoint, you must
  * update this urls accordingly.
  */
 
-export const URL_WHITELIST = [ '/api/login', '/api' ];
+export const URL_WHITELIST = [ '/api/login', '/api', '/api/getnumbervehicles','/api/getnumberdrivers','/api/totaldistance','/api/totalduration','/api/latestroute'  ];
 
 /* User roles (don't forget to add to the array if adding new) */
 

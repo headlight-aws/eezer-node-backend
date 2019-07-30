@@ -52,6 +52,7 @@ app.use(middlewares.cors);
 /* Sanitize data before inserting into mongo */
 app.use(mongoSanitize());
 
+
 /* Use authentication middleware to secure rotes
  * Note: Some routes require no authentication, such as login etc.
  * That routes are configured in the URL_WHITELIST array in constants.js.
@@ -60,7 +61,7 @@ app.use(jwt({ secret: config.JWT_SECRET }).unless({ path: URL_WHITELIST }), midd
 
 const port = process.env.PORT || config.defaultPort;
 const router = express.Router();
-const noauth_router = express.Router();
+
 
 /* Set up other middlewares */
 router.use(middlewares.default);
@@ -114,17 +115,9 @@ router.route(`/${API_PATH_DELETE_VEHICLE}`).delete(vehicleRoutes.deleteVehicle);
 router.route(`/${API_PATH_GET_VEHICLES}`).get(vehicleRoutes.getVehicles);
 router.route(`/${API_PATH_NUMBER_VEHICLES}`).get(vehicleRoutes.getNumberVehicles);
 
-/* No authentication Routes */
-noauth_router.route(`/${API_PATH_NUMBER_DRIVERS}`).get(userRoutes.getNumberDrivers);
-noauth_router.route(`/${API_PATH_NUMBER_VEHICLES}`).get(vehicleRoutes.getNumberVehicles);
-noauth_router.route(`/${API_PATH_TOTAL_DISTANCE}`).get(transportRoutes.getTotalDistance);
-noauth_router.route(`/${API_PATH_TOTAL_DURATION}`).get(transportRoutes.getTotalDuration);
-noauth_router.route(`/${API_PATH_LATEST_ROUTE}`).get(transportRoutes.getLatestRoute);
-
 /* Set base url for api endpoint */
 app.use(config.apiRootEndpoint, router);
-/* Routes for no authentication*/
-app.use(API_PATH_NOAUTHENTICATION, noauth_router);
+
 
 app.listen(port);
 
