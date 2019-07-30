@@ -119,17 +119,19 @@ module.exports = {
         return;
       }
 
-      var stringDistance = JSON.stringify(doc);
-      var jsonDistance = JSON.parse(stringDistance);
-      var totalDuration = 0;
-      var numberTransports = jsonDistance.length;
-      for (var i=0; i<numberTransports; i++){
-        totalDuration += moment(jsonDistance[i].duration);
+      let stringDuration = JSON.stringify(doc);
+      let jsonDuration = JSON.parse(stringDuration);
+      let totalDuration = 0;
+      let numberTransports = jsonDuration.length;
+      for (let i=0; i<numberTransports; i++){
+        if (jsonDuration[i].duration != null && jsonDuration[i].duration != "" ) {
+          totalDuration += jsonDuration[i].duration;
+        }
       }
 
-      var totalDurationHours = totalDuration/(60*60)
-      
-      res.json(Math.round(totalDurationHours));
+      let duration = moment.duration(totalDuration, "seconds");
+      let formatted = duration.format("hh");
+      res.json(formatted);
     });
   },
 

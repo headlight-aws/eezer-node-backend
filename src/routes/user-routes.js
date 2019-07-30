@@ -2,6 +2,7 @@ import User from '../db/models/user';
 import { toError, toResponse, toValidationError } from '../utils/response-utils';
 import { EEZER_DOCUMENT_NOT_FOUND } from '../utils/error-codes';
 import passwordHash from 'password-hash';
+import { USER_ROLE_DRIVER, USER_ROLE_ADMIN } from '../config/constants';
 
 /* Set up all the routes related to users. */
 module.exports = {
@@ -68,10 +69,10 @@ module.exports = {
     });
   },
 
-  // GET /getusers | Get all existing users in system.
+  // GET /getusers | Get all existing users, not drivers, in system.
   getUsers: (req, res) => {
 
-    User.find({}, '-_id -__v -password', (err, doc) => {
+    User.find({"role" : {"$ne" : USER_ROLE_DRIVER}}, '-_id -__v -password', (err, doc) => {
       if (err) {
         res.status(500).json(toError(err));
         return;
@@ -81,10 +82,10 @@ module.exports = {
     });
   },
 
-  // GET /getdrivers | Get all existing drivers in system.
+  // GET /drivers | Get all existing drivers in system.
   getDrivers: (req, res) => {
 
-    User.find({"role" : "DRIVER"}, '-_id -__v -password', (err, doc) => {
+    User.find({"role" : USER_ROLE_DRIVER}, '-_id -__v -password', (err, doc) => {
       if (err) {
         res.status(500).json(toError(err));
         return;
@@ -98,7 +99,7 @@ module.exports = {
   getNumberDrivers: (req, res) => {
 
     
-    User.find({"role" : "DRIVER"}, '-_id -__v', (err, doc) => {
+    User.find({"role" : USER_ROLE_DRIVER}, '-_id -__v', (err, doc) => {
       if (err) {
         res.status(500).json(toError(err));
         return;
