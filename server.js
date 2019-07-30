@@ -25,9 +25,7 @@ import {
   // vehicles
   API_PATH_ADD_VEHICLE, API_PATH_DELETE_VEHICLE, API_PATH_GET_VEHICLES, API_PATH_NUMBER_VEHICLES,
   // whitelisted URLs
-  URL_WHITELIST,
-  // no authentication api route
-  API_PATH_NOAUTHENTICATION
+  URL_WHITELIST
 } from './src/config/constants';
 
 // Don't load the .env file in production.

@@ -42,12 +42,13 @@ export const API_PATH_LOGIN = 'login';
  * Note: If you change the API root endpoint, you must
  * update this urls accordingly.
  */
+// '/api/getnumbervehicles', '/api/getNumberDrivers', '/api/totaldistance', '/api/totalduration'
 
-export const URL_WHITELIST = [ '/api/login', '/api', '/api/getnumbervehicles','/api/getnumberdrivers','/api/totaldistance','/api/totalduration','/api/latestroute'  ];
+export const URL_WHITELIST = ['/api/login', '/api', '/api/getnumbervehicles','/api/getnumberdrivers','/api/totaldistance','/api/totalduration','/api/latestroute'];
 
 /* User roles (don't forget to add to the array if adding new) */
 
 export const USER_ROLE_ADMIN = 'ADMIN';
 export const USER_ROLE_DRIVER = 'DRIVER';
 
-export const USER_ROLES = [ USER_ROLE_ADMIN, USER_ROLE_DRIVER ];
+export const USER_ROLES = [USER_ROLE_ADMIN, USER_ROLE_DRIVER];
