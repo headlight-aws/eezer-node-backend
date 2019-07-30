@@ -45,11 +45,11 @@ export const API_PATH_NOAUTHENTICATION = '/noauth';
  * update this urls accordingly.
  */
 
-export const URL_WHITELIST = [ '/api/login', '/api' ];
+export const URL_WHITELIST = ['/api/login', '/api', '/getnumbervehicles', '/getNumberDrivers', '/totaldistance', '/totalduration'];
 
 /* User roles (don't forget to add to the array if adding new) */
 
 export const USER_ROLE_ADMIN = 'ADMIN';
 export const USER_ROLE_DRIVER = 'DRIVER';
 
-export const USER_ROLES = [ USER_ROLE_ADMIN, USER_ROLE_DRIVER ];
+export const USER_ROLES = [USER_ROLE_ADMIN, USER_ROLE_DRIVER];
