@@ -44,8 +44,9 @@ export const API_PATH_NOAUTHENTICATION = '/noauth';
  * Note: If you change the API root endpoint, you must
  * update this urls accordingly.
  */
+// '/api/getnumbervehicles', '/api/getNumberDrivers', '/api/totaldistance', '/api/totalduration'
 
-export const URL_WHITELIST = ['/api/login', '/api', '/getnumbervehicles', '/getNumberDrivers', '/totaldistance', '/totalduration'];
+export const URL_WHITELIST = ['/api/login', '/api'];
 
 /* User roles (don't forget to add to the array if adding new) */
 
