@@ -128,12 +128,8 @@ module.exports = {
       }
 
       var totalDurationHours = totalDuration/(60*60)
-      console.log(totalDuration);
-      console.log(totalDurationHours);
       
-      const duration = moment.duration(totalDuration, 'seconds');
-      const formatted = duration.format("hh");
-      res.json(formatted);
+      res.json(Math.round(totalDurationHours));
     });
   },
 
