@@ -75,7 +75,7 @@ router.get(`/${API_PATH_GET_DRIVERS}`, middlewares.adminCheck);
 
 // vehicles
 router.post(`/${API_PATH_ADD_VEHICLE}`, middlewares.adminCheck);
-router.delete(`/${API_PATH_DELETE_VEHICLE}`, middlewares.adminCheck);
+router.delete(`/${API_PATH_DELETE_VEHICLE}/:vehicleId`, middlewares.adminCheck);
 router.get(`/${API_PATH_GET_VEHICLES}`, middlewares.adminCheck);
 //router.get(`/${API_PATH_NUMBER_VEHICLES}`, middlewares.adminCheck);
 
