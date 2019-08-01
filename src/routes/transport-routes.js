@@ -18,7 +18,7 @@ const dateConverter = (dateIn) => {
       return dateFormatted;
   }
   else {
-      return "0";
+      return "";
   } 
 }
 };
