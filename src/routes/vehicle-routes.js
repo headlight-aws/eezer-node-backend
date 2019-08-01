@@ -1,5 +1,6 @@
 import Vehicle from '../db/models/vehicle';
 import { toError, toResponse, toValidationError } from '../utils/response-utils';
+import { EEZER_DOCUMENT_NOT_FOUND } from '../utils/error-codes';
 
 /* Set up all the routes related to users. */
 module.exports = {
@@ -54,12 +55,19 @@ module.exports = {
   },
 
   // DELETE /rmvehicle | Remove a vehicle from the db.
-  deleteVehicle: (req, res) => {
-
-    // TODO: Implement!
-    res.send({ msg: 'oops! not implemented yet' });
-
-
+  deleteVehicle: (req, res) => {   
+    Vehicle.remove({ vehicleId: req.params.vehicleId }, (err, doc) => {    
+      if (err) {
+        res.status(500).json(toError(err));
+        return;
+      }
+  
+      if (doc.result.n === 1) {
+        res.json(toResponse(""));
+    } else {
+      res.json(toError(EEZER_DOCUMENT_NOT_FOUND));
+    }
+    });
   },
 
   // GET /getvehicles | Get all existing vehicles in system.

@@ -109,7 +109,7 @@ router.route(`/${API_PATH_NUMBER_DRIVERS}`).get(userRoutes.getNumberDrivers);
 
 /* Set up vehicle routes */
 router.route(`/${API_PATH_ADD_VEHICLE}`).post(vehicleRoutes.addVehicle);
-router.route(`/${API_PATH_DELETE_VEHICLE}`).delete(vehicleRoutes.deleteVehicle);
+router.route(`/${API_PATH_DELETE_VEHICLE}/:vehicleId`).delete(vehicleRoutes.deleteVehicle);
 router.route(`/${API_PATH_GET_VEHICLES}`).get(vehicleRoutes.getVehicles);
 router.route(`/${API_PATH_NUMBER_VEHICLES}`).get(vehicleRoutes.getNumberVehicles);
 
