@@ -4,6 +4,25 @@ import { EEZER_DOCUMENT_NOT_FOUND } from '../utils/error-codes';
 import moment from 'moment';
 import momentFormat from 'moment-duration-format';
 
+//function to import all date and time (started and ended) in the same format
+const dateConverter = (dateIn) => {
+  const DATE_FORMAT = "YYYY-MM-DD HH:mm:ss";
+  if (moment(dateIn, DATE_FORMAT).format(DATE_FORMAT) === dateIn){
+  return dateIn;}
+  else {
+  let dateOk = Date.parse(dateIn);
+
+  if ( dateOk > 0 ) {
+      let dateLongFormat = moment(dateOk);
+      var dateFormatted = moment(dateLongFormat).format(DATE_FORMAT);
+      return dateFormatted;
+  }
+  else {
+      return "0";
+  } 
+}
+};
+
 /* Set up all the routes related to transports */
 module.exports = {
 
@@ -21,8 +40,8 @@ module.exports = {
     transport.coordinates     = req.body.coordinates;
     transport.distance        = req.body.distance;
     transport.duration        = req.body.duration;
-    transport.started         = req.body.startedTime;
-    transport.ended           = req.body.endedTime;
+    transport.started         = dateConverter(req.body.startedTime);
+    transport.ended           = dateConverter(req.body.endedTime);
 
     const validationError = transport.validateSync();
 
